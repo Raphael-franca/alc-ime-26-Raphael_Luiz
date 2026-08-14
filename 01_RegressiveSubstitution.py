@@ -1,7 +1,7 @@
 import numpy as np
 
-def gauss_elimination(A, b):
-    '''A function that performs Gaussian elimination on a system of linear equations Ax = b.
+def check_dimensions(A, b):
+    '''A function that checks the dimensions of the input matrix and vector.
     Args:
         A (numpy.ndarray): A matrix of coefficients.
         b (numpy.ndarray): A vector of constants.'''
@@ -20,6 +20,16 @@ def gauss_elimination(A, b):
     if p != n:
         raise ValueError("Vector length must match the number of rows in the matrix.")
 
+    return A,b
+
+def gauss_elimination(A, b):
+    '''A function that performs Gaussian elimination on a system of linear equations Ax = b.
+    Args:
+        A (numpy.ndarray): A matrix of coefficients.
+        b (numpy.ndarray): A vector of constants.'''
+
+    A,b = check_dimensions(A, b)
+    n = A.shape[1]   
     Ab = np.hstack((A, b.reshape(-1, 1)))
 
     for i in range(n):
@@ -38,19 +48,8 @@ def regressive_substitution(A,b):
         A (numpy.ndarray): A superior triangular matrix of coefficients.
         b (numpy.ndarray): A vector of constants.'''
     
-    A = np.asarray(A)
-    b = np.asarray(b)
-
-    if A.ndim !=2  or b.ndim != 1:
-        raise ValueError("Input matrix must be 2-dimensional and vector must be 1-dimensional.")
-
-    m,n = A.shape    
-    p = b.shape[0]
-
-    if m!=n:
-        raise ValueError("Input matrix must be square.")
-    if p != n:
-        raise ValueError("Vector length must match the number of rows in the matrix.")
+    A, b = check_dimensions(A, b)
+    n = A.shape[1]
 
     x = np.zeros(n)
     c = np.zeros(n)
