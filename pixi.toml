@@ -1,0 +1,11 @@
+[workspace]
+authors = ["Raphael-franca <raphaelluiz88@gmail.com>"]
+channels = ["conda-forge"]
+name = "alc-ime-26-Raphael_Luiz"
+platforms = ["win-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+numpy = ">=2.5.2,<3"
