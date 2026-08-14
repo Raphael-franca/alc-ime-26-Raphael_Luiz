@@ -13,9 +13,12 @@ def gauss_elimination(A, b):
         raise ValueError("Input matrix must be 2-dimensional and vector must be 1-dimensional.")
 
     m, n = A.shape
+    p = b.shape[0]
 
     if m != n:
         raise ValueError("Input matrix must be square.")
+    if p != n:
+        raise ValueError("Vector length must match the number of rows in the matrix.")
 
     Ab = np.hstack((A, b.reshape(-1, 1)))
 
@@ -41,10 +44,13 @@ def regressive_substitution(A,b):
     if A.ndim !=2  or b.ndim != 1:
         raise ValueError("Input matrix must be 2-dimensional and vector must be 1-dimensional.")
 
-    m,n = A.shape
+    m,n = A.shape    
+    p = b.shape[0]
 
     if m!=n:
         raise ValueError("Input matrix must be square.")
+    if p != n:
+        raise ValueError("Vector length must match the number of rows in the matrix.")
 
     x = np.zeros(n)
     c = np.zeros(n)
