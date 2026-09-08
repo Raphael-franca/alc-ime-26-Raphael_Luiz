@@ -112,4 +112,5 @@ if __name__ == "__main__":
     print("Please enter the constants vector b (Ex: [2, 0, 4]):")
     b = eval(input())
     print("The solution is:")
+    
     print(regressive_substitution_2(A, b))
