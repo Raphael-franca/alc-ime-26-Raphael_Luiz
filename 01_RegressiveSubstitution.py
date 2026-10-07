@@ -23,22 +23,25 @@ def check_dimensions(A, b):
     return A,b
 
 def gauss_elimination(A, b):
-    '''A function that performs Gaussian elimination on a system of linear equations Ax = b.
-    Args:
-        A (numpy.ndarray): A matrix of coefficients.
-        b (numpy.ndarray): A vector of constants.'''
-
-    A,b = check_dimensions(A, b)
     n = A.shape[1]   
-    Ab = np.hstack((A, b.reshape(-1, 1)))
+    Ab = np.hstack((A, b.reshape(-1, 1))).astype(float)
+    pivot_row = 0
 
     for i in range(n):
-        for j in range(n):
-            if j > i:
-                if Ab[j][i] * Ab[i][i] + Ab[j][i] == 0:
-                    Ab[j][:] = Ab[j][i] * Ab[i][:] + Ab[j][:]
-                else:
-                    Ab[j][:] = -(Ab[j][i] * Ab[i][:])/Ab[i][i] + Ab[j][:]
+        if pivot_row >= n:
+            break
+
+        max_row = np.argmax(np.abs(Ab[pivot_row:, i])) + pivot_row
+
+        if abs(Ab[max_row][i]) < 1e-12:
+            continue
+
+        if max_row != pivot_row:
+            Ab[[pivot_row, max_row]] = Ab[[max_row, pivot_row]]
+
+        for j in range(pivot_row + 1, n):
+            Ab[j,:] -= (Ab[j,i] * Ab[pivot_row,:])/Ab[pivot_row,i]
+        pivot_row += 1
     
     return Ab[:, :-1], Ab[:, -1]
 
