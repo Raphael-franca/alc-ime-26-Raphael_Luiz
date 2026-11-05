@@ -62,7 +62,8 @@ $1*2^2 + 0*2^1 + 1*2^0 + 1*2^{(-1)} = 5,5$. O ultimo é referente a parte decima
 
 Usnado IEEE para achar o numero representado pelos bits
 
-0 10000000011 1011100100010000000000000000000000000000000000000000
+$0 10000000011 1011100100010000000000000000000000000000000000000000$
+
 $(−1)^s * 2^{c−1023} * (1 + f)$
 
 sinal: $(-1)^0 = 1$, positivo
@@ -286,5 +287,17 @@ A aplicação da transformação nao troca de base. Sendo assim, aplicar a trans
 Os autovalores são associados a transformaçao entao os autovalores das matrizes que representam as transformacoes em bases distintas sera sempre o mesmo
 
 
-# Slide X
+# Slide X 
+
+$R = \left[ \begin{array}{ccc} r_{11} & ||proj_{e_1}(v_2)|| & ||proj_{e_1}(v_3)||\\ 0 & ||u_2|| & ||proj_{e_2}(v_3)||\\ 0 & 0 & ||u_3|| \end{array} \right]$
+
+$QR = \left[\begin{array}{ccc}e_1 & e_2 & e_3 \end{array} \right] \left[ \begin{array}{ccc} r_{11} & ||proj_{e_1}(v_2)|| & ||proj_{e_1}(v_3)||\\ 0 & ||u_2|| & ||proj_{e_2}(v_3)||\\ 0 & 0 & ||u_3|| \end{array} \right]$
+
+$QR_1 = \left[\begin{array}{c}e_1 \end{array} \right] \left[ \begin{array}{ccc} r_{11}\\ 0 \\ 0 \end{array} \right]$
+
+$QR_2 = \left[\begin{array}{ccc}e_2 \end{array} \right] \left[ \begin{array}{ccc} ||proj_{e_1}(v_2)||\\ ||u_2||\\ 0 \end{array} \right]$
+
+$QR_3 = \left[\begin{array}{ccc}e_3 \end{array} \right] \left[ \begin{array}{ccc} ||proj_{e_1}(v_3)||\\ ||proj_{e_2}(v_3)||\\ ||u_3|| \end{array} \right]$
+
+Logo, a multiplicação QR desfaz a operaçao de ortonormalizaçao e o seu resultado é a matriz original. Ou seja, é uma forma de decompor uma matriz, similar a LU, porém tem a vantagem de que uma das matrizes é uma base ortonormal e bases ortonormais são matrizes ortogonais
 
